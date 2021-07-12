@@ -48,7 +48,12 @@ namespace Temp.Monitoring
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mtbDate = new System.Windows.Forms.MaskedTextBox();
             this.textOtchet = new System.Windows.Forms.TextBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrafik)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // VidFish
@@ -154,7 +159,7 @@ namespace Temp.Monitoring
             // 
             this.TempRid.Location = new System.Drawing.Point(372, 210);
             this.TempRid.Name = "TempRid";
-            this.TempRid.Size = new System.Drawing.Size(676, 27);
+            this.TempRid.Size = new System.Drawing.Size(581, 27);
             this.TempRid.TabIndex = 12;
             // 
             // dgvGrafik
@@ -218,8 +223,42 @@ namespace Temp.Monitoring
             this.textOtchet.Location = new System.Drawing.Point(372, 259);
             this.textOtchet.Name = "textOtchet";
             this.textOtchet.ReadOnly = true;
-            this.textOtchet.Size = new System.Drawing.Size(676, 27);
+            this.textOtchet.Size = new System.Drawing.Size(581, 27);
             this.textOtchet.TabIndex = 15;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.файлToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1060, 28);
+            this.menuStrip1.TabIndex = 16;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // файлToolStripMenuItem
+            // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьToolStripMenuItem,
+            this.сохранитьToolStripMenuItem});
+            this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Text = "Файл";
+            // 
+            // открытьToolStripMenuItem
+            // 
+            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.открытьToolStripMenuItem.Text = "Открыть";
+            this.открытьToolStripMenuItem.Click += new System.EventHandler(this.открытьToolStripMenuItem_Click);
+            // 
+            // сохранитьToolStripMenuItem
+            // 
+            this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
+            this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.сохранитьToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьToolStripMenuItem.Click += new System.EventHandler(this.сохранитьToolStripMenuItem_Click);
             // 
             // Temp_Monitoring
             // 
@@ -241,9 +280,13 @@ namespace Temp.Monitoring
             this.Controls.Add(this.Time);
             this.Controls.Add(this.Temp);
             this.Controls.Add(this.VidFish);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Temp_Monitoring";
             this.Text = "Temp_Monitoring";
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrafik)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -270,6 +313,10 @@ namespace Temp.Monitoring
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.MaskedTextBox mtbDate;
         private System.Windows.Forms.TextBox textOtchet;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
     }
 }
 

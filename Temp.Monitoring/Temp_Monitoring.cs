@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Temp.Monitoring
 {
@@ -76,17 +77,9 @@ namespace Temp.Monitoring
                     {
                         maxCount += 1;
                     }
-                    else
-                    {
-                        continue;
-                    }
                     if (inttemp[i] < 0 && count < 0)
                     {
                         minCount += 1;
-                    }
-                    else
-                    {
-                        continue;
                     }
                 }
             }
@@ -101,19 +94,60 @@ namespace Temp.Monitoring
         {
             if ((maxCount * 10) > 20)
             {
-                textOtchet.Text = "Порог максимально допустимой нормы превышен на" + $"{maxCount * 10} минут";
+                textOtchet.Text = "Порог максимально допустимой нормы превышен на" + " " + $"{maxCount * 10} минут";
             }
-            if ((minCount * 10) < 60)
+            if ((minCount * 10) > 60)
             {
-                textOtchet.Text = "Порог минимальной  допустимой нормы превышен на" + $"{minCount * 10} минут";
+                textOtchet.Text = "Порог минимальной  допустимой нормы превышен на" + " " + $"{minCount * 10} минут";
             }
         }
 
         private void CreateOtchet_Click(object sender, EventArgs e)
         {
-            Otchet();
             GraficFish();
-            
+            Otchet();
+        }
+
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openTableAsTXT = new OpenFileDialog();
+            openTableAsTXT.Filter = "Документ TXT (*.txt) |*.txt";
+            if (openTableAsTXT.ShowDialog() == DialogResult.OK)
+            {
+                TempRid.Text = File.ReadAllText(openTableAsTXT.FileName, Encoding.Default);
+            }
+        }
+
+        private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveTableAsCSV = new SaveFileDialog();
+            saveTableAsCSV.Filter = "Документ CSV (*.csv) |*.csv";
+            saveTableAsCSV.Title = "Сохранить результат расчетов";
+            if (saveTableAsCSV.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    FileStream file = new FileStream(saveTableAsCSV.FileName, FileMode.Create);
+                    StreamWriter sw = new StreamWriter(file, Encoding.Default);
+                    sw.Write("Отчет" + ";" + textOtchet.Text);
+                    sw.WriteLine();
+                    sw.Write("Дата" + ";" + "Факт" + ";" + "Норма" + ";" + "Отклонение от нормы" + ";");
+                    sw.WriteLine();
+                    for (int i = 0; i < dgvGrafik.RowCount; i++)
+                    {
+                        for (int j = 0; j < dgvGrafik.ColumnCount; j++)
+                        {
+                            sw.Write(Convert.ToDouble(dgvGrafik.Rows[i].Cells[j].Value));
+                            if (j < dgvGrafik.ColumnCount - 1)
+                                sw.Write(";");
+                        }
+                        sw.WriteLine();
+                    }
+                    sw.Close();
+                }
+                catch
+                { }
+            }
         }
     }
 }
